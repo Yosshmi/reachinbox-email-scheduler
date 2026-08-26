@@ -4,7 +4,7 @@ A production-minded email scheduling service and dashboard built as a hiring ass
 
 ## Current status
 
-Milestones 1–2 — repository setup, local infrastructure, and the Express health endpoint.
+Milestones 1–5 — repository setup, Express, PostgreSQL/Prisma, Redis, and the BullMQ queue/worker foundation.
 
 The application endpoints, database schema, worker, authentication, and UI will be added in later milestones. They are not claimed as implemented yet.
 
@@ -70,9 +70,9 @@ docker compose ps
 
 1. Repository/project setup — complete
 2. Express + TypeScript health endpoint — complete
-3. PostgreSQL + Prisma
-4. Redis connection
-5. BullMQ queue + worker
+3. PostgreSQL + Prisma — complete
+4. Redis connection — complete
+5. BullMQ queue + worker — complete
 6. Basic email scheduling
 7. Ethereal SMTP
 8. Concurrency + minimum delay

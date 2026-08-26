@@ -1,26 +1,39 @@
 import { app } from "./app.js";
 import { env } from "./config/env.js";
+import { connectDatabase, disconnectDatabase } from "./db/prisma.js";
+import { closeEmailQueue } from "./queues/email.queue.js";
+import { disconnectRedis } from "./redis/redis.js";
 import { logger } from "./utils/logger.js";
 
-const server = app.listen(env.PORT, () => {
-  logger.info("Server started", {
-    port: env.PORT,
-    environment: env.NODE_ENV,
-  });
-});
+let server: ReturnType<typeof app.listen>;
 
-function shutdown(signal: string): void {
-  logger.info("Shutdown signal received", { signal });
-  server.close((error) => {
-    if (error) {
-      logger.error("Server shutdown failed", { error: error.message });
-      process.exit(1);
-    }
-
-    logger.info("Server stopped");
-    process.exit(0);
+async function start(): Promise<void> {
+  await connectDatabase();
+  server = app.listen(env.PORT, () => {
+    logger.info("Server started", {
+      port: env.PORT,
+      environment: env.NODE_ENV,
+    });
   });
 }
 
-process.on("SIGINT", () => shutdown("SIGINT"));
-process.on("SIGTERM", () => shutdown("SIGTERM"));
+async function shutdown(signal: string): Promise<void> {
+  logger.info("Shutdown signal received", { signal });
+  await new Promise<void>((resolve, reject) => {
+    if (!server) return resolve();
+    server.close((error) => (error ? reject(error) : resolve()));
+  });
+  await closeEmailQueue();
+  await Promise.all([disconnectDatabase(), disconnectRedis()]);
+  logger.info("Server stopped");
+}
+
+process.on("SIGINT", () => void shutdown("SIGINT").then(() => process.exit(0)));
+process.on("SIGTERM", () => void shutdown("SIGTERM").then(() => process.exit(0)));
+
+start().catch((error: unknown) => {
+  logger.error("Server startup failed", {
+    error: error instanceof Error ? error.message : String(error),
+  });
+  process.exit(1);
+});
