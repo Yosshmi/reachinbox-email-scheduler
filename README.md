@@ -4,7 +4,7 @@ A production-minded email scheduling service and dashboard built as a hiring ass
 
 ## Current status
 
-Milestone 1 — repository and local infrastructure setup.
+Milestones 1–2 — repository setup, local infrastructure, and the Express health endpoint.
 
 The application endpoints, database schema, worker, authentication, and UI will be added in later milestones. They are not claimed as implemented yet.
 
@@ -69,7 +69,7 @@ docker compose ps
 ## Milestones
 
 1. Repository/project setup — complete
-2. Express + TypeScript health endpoint
+2. Express + TypeScript health endpoint — complete
 3. PostgreSQL + Prisma
 4. Redis connection
 5. BullMQ queue + worker
