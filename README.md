@@ -255,9 +255,9 @@ The client never submits a user ID. The authenticated session determines ownersh
 Example for a two-second delay:
 
 ```text
-alice@example.com   10:00:00
-bob@example.com     10:00:02
-charlie@example.com 10:00:04
+jai@example.com      10:00:00
+anzi@example.com     10:00:02
+vihu@example.com     10:00:04
 ```
 
 ## Concurrency and minimum delay
@@ -421,10 +421,3 @@ The nine verified tests cover:
 7. **3:55–4:25** — Show the Redis limit test and explain overflow rescheduling.
 8. **4:25–4:55** — Show tests and summarize trade-offs.
 
-## Submission
-
-- Keep the repository private.
-- Grant access to `Mitrajit` and `Yadav036` as requested.
-- Upload a demo video no longer than five minutes.
-- Submit the repository and video links through the assignment form.
-- Confirm no `.env` file or credential appears in Git history, screenshots, or video.
