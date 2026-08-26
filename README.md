@@ -420,4 +420,3 @@ The nine verified tests cover:
 6. **2:55–3:55** — Schedule ahead, stop API/worker, show Docker remains running, restart, and point out `restored: 0`.
 7. **3:55–4:25** — Show the Redis limit test and explain overflow rescheduling.
 8. **4:25–4:55** — Show tests and summarize trade-offs.
-
