@@ -4,7 +4,7 @@ A production-minded email scheduling service and dashboard built as a hiring ass
 
 ## Current status
 
-Milestones 1–5 — repository setup, Express, PostgreSQL/Prisma, Redis, and the BullMQ queue/worker foundation.
+Milestones 1–14 — core backend, Google OAuth, and the React scheduling dashboard are implemented. End-to-end delivery verification and final documentation remain.
 
 The application endpoints, database schema, worker, authentication, and UI will be added in later milestones. They are not claimed as implemented yet.
 
@@ -78,10 +78,10 @@ docker compose ps
 8. Concurrency + minimum delay
 9. Redis-backed hourly rate limiting
 10. Idempotency + restart persistence
-11. Google OAuth
-12. React dashboard
-13. CSV upload
-14. Scheduled/Sent views
+11. Google OAuth — complete
+12. React dashboard — complete
+13. CSV upload — complete
+14. Scheduled/Sent views — complete
 15. Testing + error handling
 16. Optional Campaign Assistant
 17. Final README + demo preparation
