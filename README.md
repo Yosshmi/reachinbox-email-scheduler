@@ -73,11 +73,11 @@ docker compose ps
 3. PostgreSQL + Prisma — complete
 4. Redis connection — complete
 5. BullMQ queue + worker — complete
-6. Basic email scheduling
-7. Ethereal SMTP
-8. Concurrency + minimum delay
-9. Redis-backed hourly rate limiting
-10. Idempotency + restart persistence
+6. Basic email scheduling — complete
+7. Ethereal SMTP — complete
+8. Concurrency + minimum delay — complete
+9. Redis-backed hourly rate limiting — implemented; load verification pending
+10. Idempotency + restart persistence — implemented; restart demonstration pending
 11. Google OAuth — complete
 12. React dashboard — complete
 13. CSV upload — complete

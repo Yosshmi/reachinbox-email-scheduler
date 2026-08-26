@@ -24,7 +24,7 @@ export function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage user={user} />} />
-      <Route path="/" element={user ? <AppShell user={user} /> : <Navigate to="/login" replace />}>
+      <Route path="/" element={user ? <AppShell user={user} onLogout={() => setUser(null)} /> : <Navigate to="/login" replace />}>
         <Route index element={<Navigate to="/dashboard/scheduled" replace />} />
         <Route path="dashboard" element={<Navigate to="/dashboard/scheduled" replace />} />
         <Route path="dashboard/scheduled" element={<DashboardPage />} />
