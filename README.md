@@ -76,8 +76,8 @@ docker compose ps
 6. Basic email scheduling — complete
 7. Ethereal SMTP — complete
 8. Concurrency + minimum delay — complete
-9. Redis-backed hourly rate limiting — implemented; load verification pending
-10. Idempotency + restart persistence — implemented; restart demonstration pending
+9. Redis-backed hourly rate limiting — complete
+10. Idempotency + restart persistence — complete
 11. Google OAuth — complete
 12. React dashboard — complete
 13. CSV upload — complete

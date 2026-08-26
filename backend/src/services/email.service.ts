@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import type { EmailStatus } from "@prisma/client";
 
 import { env } from "../config/env.js";
 
@@ -7,6 +8,10 @@ export interface SendEmailInput {
   to: string;
   subject: string;
   body: string;
+}
+
+export function shouldSkipDelivery(status: EmailStatus): boolean {
+  return status === "SENT";
 }
 
 export async function sendEmail(input: SendEmailInput): Promise<{

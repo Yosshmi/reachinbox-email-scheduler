@@ -4,7 +4,7 @@ import { env } from "../config/env.js";
 import { connectDatabase, disconnectDatabase, prisma } from "../db/prisma.js";
 import { EMAIL_QUEUE_NAME, type EmailJobData } from "../queues/email.queue.js";
 import { redis } from "../redis/redis.js";
-import { sendEmail } from "../services/email.service.js";
+import { sendEmail, shouldSkipDelivery } from "../services/email.service.js";
 import { reserveSendSlot } from "../services/rate-limit.service.js";
 import { logger } from "../utils/logger.js";
 
@@ -22,7 +22,7 @@ const worker = new Worker<EmailJobData>(
     });
 
     if (!email) throw new Error("Scheduled email record was not found");
-    if (email.status === "SENT") {
+    if (shouldSkipDelivery(email.status)) {
       logger.info("Already-sent email skipped", { scheduledEmailId });
       return;
     }
