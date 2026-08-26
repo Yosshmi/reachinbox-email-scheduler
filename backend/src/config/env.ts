@@ -17,6 +17,10 @@ const envSchema = z.object({
   ETHEREAL_PORT: z.coerce.number().int().positive().default(587),
   ETHEREAL_USER: z.string().default(""),
   ETHEREAL_PASSWORD: z.string().default(""),
+  GOOGLE_CLIENT_ID: z.string().default(""),
+  GOOGLE_CLIENT_SECRET: z.string().default(""),
+  GOOGLE_CALLBACK_URL: z.url().default("http://localhost:5000/auth/google/callback"),
+  SESSION_SECRET: z.string().min(16).default("development-only-change-me"),
 });
 
 const result = envSchema.safeParse(process.env);
