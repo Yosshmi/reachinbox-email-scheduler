@@ -3,12 +3,14 @@ import { env } from "./config/env.js";
 import { connectDatabase, disconnectDatabase } from "./db/prisma.js";
 import { closeEmailQueue } from "./queues/email.queue.js";
 import { disconnectRedis } from "./redis/redis.js";
+import { reconcileScheduledJobs } from "./services/reconciliation.service.js";
 import { logger } from "./utils/logger.js";
 
 let server: ReturnType<typeof app.listen>;
 
 async function start(): Promise<void> {
   await connectDatabase();
+  await reconcileScheduledJobs();
   server = app.listen(env.PORT, () => {
     logger.info("Server started", {
       port: env.PORT,

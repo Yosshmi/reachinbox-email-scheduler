@@ -5,6 +5,7 @@ import { env } from "./config/env.js";
 import { prisma } from "./db/prisma.js";
 import { errorHandler, notFoundHandler } from "./middleware/error.middleware.js";
 import { redis } from "./redis/redis.js";
+import { emailRouter } from "./routes/email.routes.js";
 
 export const app = express();
 
@@ -32,6 +33,8 @@ app.get("/health", async (_req, res, next) => {
     next(error);
   }
 });
+
+app.use("/api/emails", emailRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
